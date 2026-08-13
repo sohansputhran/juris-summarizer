@@ -45,7 +45,7 @@ nyaya-rag/
 ## Setup
 
 ```bash
-git clone https://github.com/<your-username>/nyaya-rag.git
+git clone https://github.com/sohansputhran/nyaya-rag.git
 cd nyaya-rag
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
