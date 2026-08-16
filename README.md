@@ -2,7 +2,7 @@
 
 LLM-based summarization and retrieval-augmented question answering over Indian case law, with a focus on **factual grounding** — not just fluent output. Built as applied ML work aligned with justice-tech document automation problems (transcription, summarization, litigant Q&A).
 
-## Status: Phase 1 — Summarization warm-up
+## Status: Phase 1 - Summarization warm-up
 
 Before tackling messy, unstructured Indian case law, this repo starts with a controlled benchmark: the DrivenData [*What's Up, Docs?*](https://www.drivendata.org/competitions/297/whats-up-docs/) competition — summarizing SocArXiv social science papers against author-written abstracts (ROUGE-2 F1).
 
