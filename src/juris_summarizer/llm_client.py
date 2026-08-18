@@ -3,7 +3,8 @@ import os
 from dotenv import load_dotenv
 
 from .config import (
-    PROVIDER,
+    MAP_PROVIDER,
+    REDUCE_PROVIDER,
     MAP_MODEL,
     REDUCE_MODEL,
     MAP_MAX_TOKENS,
@@ -16,14 +17,20 @@ from .prompts import MAP_PROMPT_TEMPLATE, REDUCE_PROMPT_TEMPLATE, format_chunk_s
 load_dotenv()
 
 
-def get_client(provider: str = PROVIDER):
-    """Returns an OpenAI-SDK-compatible client for the configured provider."""
+def get_client(provider: str):
+    """Returns an OpenAI-SDK-compatible client for the given provider ('groq' or 'cerebras')."""
     if provider == "groq":
         from groq import Groq
         return Groq(api_key=os.environ.get("GROQ_API_KEY"))
+    
     elif provider == "cerebras":
         from cerebras.cloud.sdk import Cerebras
         return Cerebras(api_key=os.environ.get("CEREBRAS_API_KEY"))
+    
+    elif provider == "huggingface":
+        from huggingface_hub import InferenceClient
+        return InferenceClient(api_key=os.environ.get("HF_TOKEN"))
+    
     else:
         raise ValueError(f"Unknown provider: {provider}")
 

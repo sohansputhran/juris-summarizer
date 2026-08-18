@@ -24,7 +24,8 @@ def append_result(result: dict, path: str = RESULTS_CHECKPOINT_PATH):
 
 
 def run_batch_eval(
-    client,
+    map_client, 
+    reduce_client,
     sample_df,
     example_chunk_summaries: str,
     example_reference_summary: str,
@@ -42,7 +43,7 @@ def run_batch_eval(
         if row["paper_id"] in completed_ids:
             continue
         try:
-            result = evaluate_row(client, row, example_chunk_summaries, example_reference_summary)
+            result = evaluate_row(map_client, reduce_client, row, example_chunk_summaries, example_reference_summary)
             append_result(result, checkpoint_path)
         except Exception as e:
             print(f"FAILED on paper_id {row['paper_id']}: {e}")
